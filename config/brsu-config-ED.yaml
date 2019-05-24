@@ -1,10 +1,11 @@
 world_name: brsu
 
 plugins:
-  - name: gui_server
-    lib: libed_gui_server_plugin.so     
-    parameters:
-        predict_entities: 0
+#  - name: gui_server
+#    lib: libed_gui_server_plugin.so     
+#    enabled: 0
+#    parameters:
+#        predict_entities: 0
   - name: laser_integration
     lib: libed_laser_plugin_tracking.so
     frequency: 30
@@ -50,3 +51,8 @@ plugins:
     frequency: 5
     parameters:
         mobidik_initially_connected: 1
+  - name: gui_server
+    lib: libed_gui_server_plugin.so
+    enabled: 0
+    parameters:
+        predict_entities: 0
