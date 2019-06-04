@@ -17,7 +17,7 @@ plugins:
         min_cluster_size: 0.05
         max_cluster_size: 10.0
         max_gap_size: 1
-        min_gap_size_for_split: 5
+        min_gap_size_for_split: 15
         check_door_status: 1
         nominal_corridor_width: 0.5
         correctRot: 1
@@ -32,7 +32,8 @@ plugins:
     lib: libed_route_navigation_plugin.so
     frequency: 5
     parameters:
-        mobidik_initially_connected: 1
+        mobidik_initially_connected: 0
+        sensor_back: 0
   - name: gui_server
     lib: libed_gui_server_plugin.so     
     parameters:
