@@ -28,12 +28,12 @@ plugins:
     enabled: 1
     parameters:
         entity_timeout: 3.0
-  - name: route_navigation
-    lib: libed_route_navigation_plugin.so
-    frequency: 5
-    parameters:
-        mobidik_initially_connected: 0
-        sensor_back: 0
+#  - name: route_navigation
+#    lib: libed_route_navigation_plugin.so
+#    frequency: 5
+#    parameters:
+#        mobidik_initially_connected: 0
+#        sensor_back: 0
   - name: gui_server
     lib: libed_gui_server_plugin.so     
     parameters:
