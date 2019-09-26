@@ -56,4 +56,5 @@ plugins:
     lib: libed_entity_server_plugin.so
     parameters:
         cart_mobidik_width: 0.72
-        cart_mobidik_margin: 0.22
+        cart_mobidik_lower_margin: 0.22
+        cart_mobidik_upper_margin: 0.05
