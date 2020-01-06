@@ -1,13 +1,13 @@
 #world_name: hospital_test_amcl
-#world_name: tue_hallway_RLtoAL
-world_name: brsu
+world_name: tue_hallway_RLtoAL
+#world_name: brsu
 
 plugins:
   - name: laser_integration
     lib: libed_laser_plugin_tracking.so
     frequency: 30
     parameters:
-        laser_topic: /ropod_tue_2/laser/scan
+        laser_topic: /ropod/laser/scan
         min_segment_size_pixels: 6
         world_association_distance: 0.2
         segment_depth_threshold: 0.08

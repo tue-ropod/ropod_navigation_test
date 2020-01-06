@@ -1,0 +1,94 @@
+#world_name: hospital_test_amcl
+world_name: tue_hallway_RLtoAL
+
+plugins:
+  - name: laser_integration
+    lib: libed_laser_plugin_tracking.so
+    frequency: 30
+    parameters:
+        laser_topic: /ropod_tue_2/laser/scan
+        min_segment_size_pixels: 6
+        world_association_distance: 0.2
+        segment_depth_threshold: 0.08
+        min_cluster_size: 0.05
+        max_cluster_size: 10.0
+        max_gap_size: 1
+        min_gap_size_for_split: 15
+        check_door_status: 1
+        nominal_corridor_width: 0.5
+        correctRot: 1
+        correctTrans: 0
+        dist_for_object_split: 0.4
+        # Buffer: Producer
+        bufferName: "MHT-buffer"
+        bufferSize: 80
+  - name: entity_clearer
+    lib: libed_clearer_plugin.so
+    enabled: 1
+    parameters:
+        entity_timeout: 3.0
+  - name: gui_server
+    lib: libed_gui_server_plugin.so     
+    parameters:
+        predict_entities: 0
+  - name: wired
+    lib: libed_multiple_hypothesis_plugin.so
+    frequency: 20
+    parameters:
+        world_model_frame: "/map"
+        output_frame: "/map"
+        #max_num_hypotheses: 100
+        max_num_hypotheses: 100
+        min_probability_ratio: 1e-10
+        # Buffer: Consumer
+        bufferName: "MHT-buffer"
+
+        # TODO knowledge: remove clutter prior. How to set the other priors?
+        knowledge: 
+          prior_new: 0.3
+          prior_existing: 0.9
+          prior_clutter: 0.0
+          
+          object_class: 
+            - name: "object"
+              behavior_model: 
+#                Attribute positon: use this filter or write new one? Separate attribute for orientation?
+                 - attribute: "positionAndDimension"
+                   #model: "wire_state_estimators/PositionAndDimensionEstimator"
+                   model: "wire_state_estimators/PositionAndDimensionEstimator"
+                   pnew:
+                     type: "uniform"
+                     dimensions: 3
+                     density: 0.0001
+                   pclutter:
+                     type: "uniform"
+                     dimensions: 3
+                     density: 0.0001
+#                   parameters:
+#                     - name: "max_acceleration"
+#                       value: 8
+#                     - name: "kalman_timeout"
+#                       value: 1
+#                     - name: "fixed_pdf_cov"
+#                       value: 0.001
+#                     - name: "process_model"
+#                       value: "constant_velocity"
+#                 Attribute Dimensions: TODO make new (constant dimension) model for both circular and rectangular class. Combine to single model as for the postion estimators?
+#                 Attribute class label: TODO (RGBD-integration)                     
+#                 - attribute: "class_label"
+#                   model: "wire_state_estimators/DiscreteEstimator"
+#                   pnew:
+#                     type: "discrete"
+#                     domain_size: 100
+#                   pclutter:
+#                     type: "discrete"
+#                     domain_size: 100
+#                # Shape: circles and rectangles. pclutter required?
+#                 - attribute: "shape"
+#                   model: "wire_state_estimators/DiscreteEstimator"
+#                   pnew:
+#                     type: "discrete"
+#                     domain_size: 2
+#                   pclutter:
+#                     type: "discrete"
+#                     domain_size: 2
