@@ -22,11 +22,11 @@ plugins:
         # Buffer: Producer
         bufferName: "MHT-buffer"
         bufferSize: 80
-  - name: entity_clearer
-    lib: libed_clearer_plugin.so
-    enabled: 1
-    parameters:
-        entity_timeout: 3.0
+#  - name: entity_clearer
+#    lib: libed_clearer_plugin.so
+#    enabled: 1
+#    parameters:
+#        entity_timeout: 3.0
   - name: gui_server
     lib: libed_gui_server_plugin.so     
     parameters:
@@ -38,10 +38,11 @@ plugins:
         world_model_frame: "/map"
         output_frame: "/map"
         #max_num_hypotheses: 100
-        max_num_hypotheses: 100
+        max_num_hypotheses: 1
         min_probability_ratio: 1e-10
         # Buffer: Consumer
         bufferName: "MHT-buffer"
+        object_timeout: 3.0
 
         # TODO knowledge: remove clutter prior. How to set the other priors?
         knowledge: 
