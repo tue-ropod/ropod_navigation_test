@@ -46,7 +46,7 @@ plugins:
 
         # TODO knowledge: remove clutter prior. How to set the other priors?
         knowledge: 
-          prior_new: 0.3
+          prior_new: 0.3 # prior probabilities of the hypotheses.
           prior_existing: 0.9
           prior_clutter: 0.0
           
@@ -59,12 +59,12 @@ plugins:
                    model: "wire_state_estimators/PositionAndDimensionEstimator"
                    pnew:
                      type: "uniform"
-                     dimensions: 3
-                     density: 0.0001
+                     dimensions: 3 # TODO: Update dimensions here?! It is not a 3 dimensional state anymore! Diff between rectangle and circle in dimensions? This information is abstracted from the model, right?
+                     density: 0.000001 # TODO what does this density mean? How to relate to measurement uncertainty?! -> Return of the likelihood.
                    pclutter:
                      type: "uniform"
                      dimensions: 3
-                     density: 0.0001
+                     density: 0.0
 #                   parameters:
 #                     - name: "max_acceleration"
 #                       value: 8
