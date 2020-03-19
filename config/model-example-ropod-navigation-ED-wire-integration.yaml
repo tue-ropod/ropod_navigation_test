@@ -32,17 +32,18 @@ plugins:
     parameters:
         predict_entities: 0
   - name: wired
-    lib: libed_multiple_hypothesis_plugin.so
+    lib: libwired.so
     frequency: 20
     parameters:
         world_model_frame: "/map"
         output_frame: "/map"
         #max_num_hypotheses: 100
-        max_num_hypotheses: 1
+        max_num_hypotheses: 5
         min_probability_ratio: 1e-10
         # Buffer: Consumer
         bufferName: "MHT-buffer"
         object_timeout: 3.0
+        single_object_assignment: 0
 
         # TODO knowledge: remove clutter prior. How to set the other priors?
         knowledge: 
@@ -60,14 +61,14 @@ plugins:
                    pnew:
                      type: "uniform"
                      dimensions: 3 # TODO: Update dimensions here?! It is not a 3 dimensional state anymore! Diff between rectangle and circle in dimensions? This information is abstracted from the model, right?
-                     density: 0.000001 # TODO what does this density mean? How to relate to measurement uncertainty?! -> Return of the likelihood.
+                     density: 0.001 # TODO what does this density mean? How to relate to measurement uncertainty?! -> Return of the likelihood.
                    pclutter:
                      type: "uniform"
                      dimensions: 3
                      density: 0.0
-#                   parameters:
-#                     - name: "max_acceleration"
-#                       value: 8
+                   parameters:
+                     - name: "max_acceleration"
+                       value: 8
 #                     - name: "kalman_timeout"
 #                       value: 1
 #                     - name: "fixed_pdf_cov"
