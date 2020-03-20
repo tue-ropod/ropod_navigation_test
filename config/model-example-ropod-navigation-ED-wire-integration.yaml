@@ -43,7 +43,7 @@ plugins:
         # Buffer: Consumer
         bufferName: "MHT-buffer"
         object_timeout: 3.0
-        single_object_assignment: 0
+        single_object_assignment: 1
 
         # TODO knowledge: remove clutter prior. How to set the other priors?
         knowledge: 
